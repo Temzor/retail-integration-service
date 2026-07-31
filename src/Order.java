@@ -1,21 +1,38 @@
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
+
 public class Order {
-    private int orderID;
-    private int quantity;
-    public Order(int orderID, int quantity) {
-        this.orderID = orderID;
-        this.quantity = quantity;
+    private final UUID id;
+    private final List<OrderItem> items;
+
+    public Order(UUID id, List<OrderItem> items) {
+        this.id = id;
+        this.items = items;
     }
 
-    public int getOrderID() {
-        return orderID;
+    public void addItem(OrderItem item) {
+        if (item == null)         {
+            throw new IllegalArgumentException("item cannot be null");
+        } else {
+            items.add(item);
+        }
     }
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+
+    public boolean removeItem(UUID productId) {
+        items.removeIf(item -> item.equals(productId));
+        return false;
     }
-    public int getQuantity() {
-        return quantity;
+
+    public BigDecimal getTotal() {
+        return BigDecimal.ZERO;
     }
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
