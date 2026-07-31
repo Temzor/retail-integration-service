@@ -1,3 +1,5 @@
+package ru.temzor.retail.domain;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
